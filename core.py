@@ -20,10 +20,7 @@ def clear_screen():
 def validate_input(ip, val_range):
     try:
         ip = int(ip)
-        if ip in val_range:
-            return ip
-        else:
-            return None
+        return ip if ip in val_range else None
     except:
         return None
 
@@ -74,8 +71,11 @@ class HackingTool(object):
             print("[{:2}] {}".format(index + 1, option[0]))
         if self.PROJECT_URL:
             print("[{:2}] {}".format(98, "Open project page"))
-        print("[{:2}] {}".format(
-            99, ("Back to " + parent.TITLE) if parent is not None else "Exit"))
+        print(
+            "[{:2}] {}".format(
+                99, f"Back to {parent.TITLE}" if parent is not None else "Exit"
+            )
+        )
         option_index = input("Select an option : ")
         try:
             option_index = int(option_index)
@@ -154,7 +154,7 @@ class HackingToolsCollection(object):
         pass
 
     def show_info(self):
-        os.system("figlet -f standard -c {} | lolcat".format(self.TITLE))
+        os.system(f"figlet -f standard -c {self.TITLE} | lolcat")
         # os.system(f'echo "{self.DESCRIPTION}"|boxes -d boy | lolcat')
         # print(self.DESCRIPTION)
 
@@ -163,8 +163,11 @@ class HackingToolsCollection(object):
         self.show_info()
         for index, tool in enumerate(self.TOOLS):
             print("[{:2}] {}".format(index, tool.TITLE))
-        print("[{:2}] {}".format(
-            99, ("Back to " + parent.TITLE) if parent is not None else "Exit"))
+        print(
+            "[{:2}] {}".format(
+                99, f"Back to {parent.TITLE}" if parent is not None else "Exit"
+            )
+        )
         tool_index = input("Choose a tool to proceed: ")
         try:
             tool_index = int(tool_index)
